@@ -1,0 +1,11 @@
+<div class="row mb-5" style="flex-wrap: nowrap!important;">
+    <div class="col-md-12" style="flex: 100%!important;">
+        <h1 class="text-center">TOTAL DE MORTOS DE COVID POR DIA</h1>
+        <div class="chart-wrapper mt-3">
+            <canvas baseChart [datasets]="colunaChart" [labels]="linhaChart" [options]="lineChartOptions"
+                [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [plugins]="lineChartPlugins">
+            </canvas>
+        </div>
+    </div>
+</div>
