@@ -17,10 +17,11 @@ const routes: Routes = [
         path: 'info',
         component:InfoComponent
       },
-      { path: 'sobre', loadChildren: () => import('./layout/home-page/sobre/sobre.module').then(m => m.SobreModule) }
+      { path: 'sobre', loadChildren: () => import('./layout/home-page/sobre/sobre.module').then(m => m.SobreModule) },
+      { path: 'ref', loadChildren: () => import('./layout/home-page/ref/ref.module').then(m => m.RefModule) },
     ]
   },
-  { path: 'ref', loadChildren: () => import('./layout/home-page/ref/ref.module').then(m => m.RefModule) },
+  
 
 
 ];
