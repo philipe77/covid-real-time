@@ -26,11 +26,16 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
     this.covidApi.getInfoMundo().subscribe((mundo: Mundo) => {
       this.mundo = mundo;
+      formatDate(new Date(mundo.updated), 'dd/MM/yyyy, h:MM:ss', 'en-US');
+      console.log(mundo)
+
     });
 
     this.covidApi.getInfoPais().subscribe((pais: Pais) => {
       this.pais = pais;
-      this.transformData(new Date(this.pais.updated))
+      let test =new Date(this.pais.updated).getTime() + (2*60*60*1000);
+      
+      this.transformData(new Date(test))
     });
 
     this.getAllEstados()
@@ -45,7 +50,7 @@ export class InfoComponent implements OnInit {
   }
 
   transformData(data: Date) {
-    this.hoje = formatDate(data, 'dd/MM/yyyy, h:MM:ss', 'pt-BR');
+    this.hoje = formatDate(data, 'dd/MM/yyyy', 'pt-BR');
   }
 
   // função para converter data
@@ -56,15 +61,11 @@ export class InfoComponent implements OnInit {
   getAllEstados(){
     this.covidApi.getAllEstados().subscribe((resp:Estado[])=>{
       this.estados =resp
-      console.log(this.estados)
     })
   }
 
   getInfoByEstado(){
-    let estado:Estado = {} as Estado;
     this.covidApi.getInfoBrasilEstados(this.estadoInput).subscribe(resp=>{
-      console.log(resp)
-      //estado = resp;
       Swal.fire({
         title: `Estado selecionado: ${resp.state}`,
         html: `<p>Casos Confirmados: ${resp.cases}</<p>
